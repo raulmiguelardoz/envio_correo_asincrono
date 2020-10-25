@@ -1,0 +1,25 @@
+import smtplib
+
+def envio_asincrono_correos(destinatario,titulo,mensaje):
+    
+    server=smtplib.SMTP('smtp.gmail.com',587)
+    server.starttls()
+    server.login('raulmiguelardoz@gmail.com','rMMj520*m')
+    #notar que se ha puesto la contraseña pero no he podido 
+    #hacer from decouple import config quizas por problemas de version
+
+    mensaje=f'Subject: {titulo}\n\n{mensaje}'
+
+    
+    server.sendmail('raulmiguelardoz@gmail.com',destinatario,mensaje)    
+        #envio,destinatario,mensaje
+
+    server.quit()
+    print("Correo enviado correctamente\n")
+    
+destinatario=["raulmiguelardoz@gmail.com","raulmiguelardoz@gmail.com","raulmiguelardoz@gmail.com"]
+titulo=["mail1","mail2","mail3"]
+mensaje=["sms1","sms2","sms3"]
+
+for i in range(3):
+    envio_asincrono_correos(destinatario[i],titulo[i],mensaje[i])
